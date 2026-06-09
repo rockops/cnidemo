@@ -3,8 +3,10 @@
 ########################
 # include the magic
 ########################
-. /home/ben/share_CNI/demo-magic.sh
-. /home/ben/share_CNI/util.sh
+TOP=$(cd $(dirname $0) && pwd)
+
+. $TOP/../demo-magic.sh
+. $TOP/../util.sh
 
 DEMO_PROMPT="ns2# "
 
