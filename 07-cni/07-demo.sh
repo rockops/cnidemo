@@ -23,6 +23,13 @@ cd demystifying-cni
 comment "Now, see it in action: Create a kind cluster"
 pe "make cluster"
 
+echo -n "Waiting for cluster to be ready"
+until kubectl get sa default &>/dev/null; do
+  echo -n "."
+  sleep 2
+done
+echo " Ready!"
+
 cd ..
 
 comment "Try to run a pod without any CNI configured"
