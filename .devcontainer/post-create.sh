@@ -13,6 +13,7 @@ sudo apt-get install -y \
   telnet \
   jq \
   bat \
+  pv \
   make
 
 # Ensure batcat is globally accessible
