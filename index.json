@@ -1,0 +1,63 @@
+{
+  "title": "CNI demo",
+  "description": "Build a CNI plugin and run it in a Kubernetes cluster",
+  "details": {
+    "intro": {
+      "text": "intro/intro.md",
+      "foreground": "intro/foreground.sh"
+    },
+    "steps": [
+      {
+        "title": "Create the network namespace",
+        "text": "step1/step1.md"
+      },
+      {
+        "title": "Create the vEth pair",
+        "text": "step2/step2.md"
+      },
+      {
+        "title": "Create the second namespace",
+        "text": "step3/step3.md"
+      },
+      {
+        "title": "Hello world",
+        "text": "step5/step5.md"
+      },
+      {
+        "title": "Multiple nodes",
+        "text": "step6/step6.md"
+      },
+      {
+        "title": "Build your CNI",
+        "text": "step7/step7.md"
+      }
+
+    ],
+    "assets": {
+      "host01": [
+        {"file": "scenarios/**", "target": "/assets", "chmod": "+r"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  },
+  "backendExtended": {
+    "nodes": [
+      {
+        "name": "ns",
+        "connect": "node",
+        "split": "down",
+        "tabname" : "TAB2"
+      },
+      {
+        "name": "node",
+        "imageid": "ghcr.io/rockops/rockdemo/ubuntu-systemd:24.04",
+        "cmd": "bash",
+        "ip": "172.30.1.2",
+        "privileged": true,
+        "tabname" : "TAB1"
+      }
+    ]
+  }
+}
