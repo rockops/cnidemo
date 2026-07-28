@@ -21,7 +21,7 @@ pe "ping -c 1 8.8.8.8"
 
 error "It fails !" "We need to configure the default route"
 
-pe 'sudo ip route add default via 10.0.0.154'
+pe 'sudo ip route add default via 10.0.0.254'
 
 comment "Try to ping an external host"
 pe "ping -c 1 8.8.8.8"

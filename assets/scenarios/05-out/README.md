@@ -8,7 +8,7 @@ Enable egress internet connectivity (e.g., pinging `8.8.8.8`) from inside the is
 
 ## Kernel Mechanisms Demoed
 
-*   **Routing Tables & Default Routes (`ip route`)**: Defining the default gateway (`10.0.0.154` via `br0`) inside the namespace.
+*   **Routing Tables & Default Routes (`ip route`)**: Defining the default gateway (`10.0.0.254` via `br0`) inside the namespace.
 *   **IP Forwarding**: Directing the host kernel to act as a router and forward transit traffic between virtual bridge `br0` and the host's physical network interface.
 *   **Source NAT / IP Masquerading (`iptables -t nat`)**: Rewriting the source IP of outgoing packets from the private subnet (`10.0.0.0/24`) to the host's external IP, enabling reply routing.
 *   **IPTables Forwarding Rules (`FORWARD` chain)**: Permitting traffic to pass through the host between the bridge (`br0`) and the external network.

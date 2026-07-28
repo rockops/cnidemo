@@ -16,7 +16,7 @@ pei "ip netns add pod1"
 echo ""
 echo "> bridge"
 pei "ip link add br0 type bridge"
-pei "ip addr add 10.0.0.1/24 dev br0"
+pei "ip addr add 10.1.1.154/16 dev br0"
 pei "ip link set br0 up"
 
 echo ""
@@ -40,7 +40,7 @@ comment "We are back to node1 in root namespace. Check the interfaces"
 pe "ip a"
 
 comment "We can ping the pod1 namespace from the host"
-pe "ping -c 3 10.1.1.2"
+pe "ping -c 3 10.1.1.1"
 
 redirect "Now create a namespace on node2"
 cont

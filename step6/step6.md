@@ -18,6 +18,7 @@ cd /assets/scenarios/06-multi
 ./06-node2.sh
 ``` {{exec target=ns hidden=true text="Create node2"}}
 
+![Schema](step6-1.png)
 
 ## Setup the connection from node1 to node2
 
@@ -38,4 +39,4 @@ go
 ``` {{exec target=ns hidden=true text="Start"}}
 
 
-![Schema](step6.png)
+![Schema](step6-2.png)

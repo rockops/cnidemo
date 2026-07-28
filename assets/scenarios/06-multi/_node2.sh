@@ -12,7 +12,7 @@ cd /demo/06-multi
 echo ""
 pei "ip netns add pod2"
 pei "ip link add br0 type bridge"
-pei "ip addr add 10.0.0.1/24 dev br0"
+pei "ip addr add 10.1.2.254/16 dev br0"
 pei "ip link set br0 up"
 pei "ip link add veth-host type veth peer name veth-ns"
 pei "ip link set veth-ns netns pod2"
@@ -24,7 +24,7 @@ info "Enter in the namespace to configure it"
 ip netns exec pod2 bash _node2_ns.sh
 
 comment "We are back to node2 in root namespace." "We can ping the pod2 namespace from the host"
-pe "ping -c 3 10.1.1.4"
+pe "ping -c 3 10.1.2.2"
 
 comment "Check the network interfaces"
 pe "ip a"

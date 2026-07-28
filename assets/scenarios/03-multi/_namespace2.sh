@@ -16,4 +16,4 @@ comment "ping ns2"
 pe "ping -c 3 10.0.0.2" 
 
 comment "ping the bridge"
-pe "ping -c 3 10.0.0.154"
+pe "ping -c 3 10.0.0.254"

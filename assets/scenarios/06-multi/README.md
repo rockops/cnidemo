@@ -4,7 +4,7 @@ This directory demonstrates how to establish connectivity between pods (namespac
 
 ## Target of the Demo
 
-Connect `pod1` on `node1` (`10.1.1.2`) to `pod2` on `node2` (`10.1.1.4`) across a simulated multi-host boundary. This mimics the multi-host network routing topology used by popular Kubernetes CNI plugins like Flannel.
+Connect `pod1` on `node1` (`10.1.1.1`) to `pod2` on `node2` (`10.1.2.2`) across a simulated multi-host boundary. This mimics the multi-host network routing topology used by popular Kubernetes CNI plugins like Flannel.
 
 ## Kernel Mechanisms Demoed
 

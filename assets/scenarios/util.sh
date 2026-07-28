@@ -92,11 +92,11 @@ cont() {
   done
 }
 
-PROMPT_NS1="\[\e[1;32m\][ns1]$ \[\e[0m\] "
-PROMPT_NODE="\[\e[1;34m\][node]$ \[\e[0m\] "
-PROMPT_NS2="\[\e[1;31m\][ns2]$ \[\e[0m\] "
+PROMPT_NS1="\[\e[30;42m\][ns1]$ \[\e[0m\] "
+PROMPT_NODE="\[\e[37;44m\][node]$ \[\e[0m\] "
+PROMPT_NS2="\[\e[37;41m\][ns2]$ \[\e[0m\] "
 
-PROMPT_NODE1="\[\e[1;34m\][node1]$ \[\e[0m\] "
-PROMPT_NODE1_POD1="\[\e[1;32m\][pod1@node1]$ \[\e[0m\] "
-PROMPT_NODE2="\[\e[1;35m\][node2]$ \[\e[0m\] "
-PROMPT_NODE2_POD2="\[\e[1;31m\][pod2@node2]$ \[\e[0m\] "
+PROMPT_NODE1="\[\e[37;44m\][node1]$ \[\e[0m\] "
+PROMPT_NODE1_POD1="\[\e[30;42m\][pod1@node1]$ \[\e[0m\] "
+PROMPT_NODE2="\[\e[37;45m\][node2]$ \[\e[0m\] "
+PROMPT_NODE2_POD2="\[\e[37;41m\][pod2@node2]$ \[\e[0m\] "

@@ -20,8 +20,14 @@ info "I am in the root namespace"
 comment "Create the veth pair"
 pe "sudo ip link add veth-host type veth peer name veth-ns"
 
+comment "We have 2 interfaces in the root namespace now"
+pe "ip a show veth-ns && ip a show veth-host"
+
 comment "Add one end of the veth pair to the namespace"
 pe "sudo ip link set veth-ns netns ns1"
+
+comment "One end of the veth pair is now in the namespace"
+pe "ip a show veth-host"
 
 comment "Assign an IP to the host side of the veth pair"
 pe "sudo ip addr add 10.0.0.1/24 dev veth-host"
