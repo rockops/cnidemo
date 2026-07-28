@@ -32,6 +32,6 @@ comment "Display the network interfaces in the current namespace"
 pe "ip a"
 
 comment "Ping the host"
-pe "ping -c 3 10.0.0.1"
+pe "ping -c 3 10.0.0.10"
 
 redirect "Now you can ping the namespace from the host"

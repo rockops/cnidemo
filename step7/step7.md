@@ -27,6 +27,8 @@ Inspect the CNI implementation
 
 ## Install the CNI in a real cluster
 
+![Schema](step7.png)
+
 ```
 cd /assets/scenarios/07-cni
 ./07-demo.sh

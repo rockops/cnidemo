@@ -100,3 +100,5 @@ PROMPT_NODE1="\[\e[37;44m\][node1]$ \[\e[0m\] "
 PROMPT_NODE1_POD1="\[\e[30;42m\][pod1@node1]$ \[\e[0m\] "
 PROMPT_NODE2="\[\e[37;45m\][node2]$ \[\e[0m\] "
 PROMPT_NODE2_POD2="\[\e[37;41m\][pod2@node2]$ \[\e[0m\] "
+
+PROMPT_CP="\[\e[37;41m\][controlplane]$ \[\e[0m\] "

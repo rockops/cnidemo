@@ -30,7 +30,7 @@ comment "One end of the veth pair is now in the namespace"
 pe "ip a show veth-host"
 
 comment "Assign an IP to the host side of the veth pair"
-pe "sudo ip addr add 10.0.0.1/24 dev veth-host"
+pe "sudo ip addr add 10.0.0.10/24 dev veth-host"
 
 comment "Bring the interface up"
 pe "sudo ip link set veth-host up"

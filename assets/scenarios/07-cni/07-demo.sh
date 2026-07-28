@@ -12,11 +12,7 @@ sudo sleep 1
 # hide the evidence
 clear
 
-comment "First have a look at the CNI plugin"
-pe "cat 10-demystifying.conf | jq"
-
-comment "And the plugin itself"
-pe "batcat -l bash demystifying"
+DEMO_PROMPT=$PROMPT_NODE
 
 cd demystifying-cni
 
@@ -50,7 +46,7 @@ docker exec -it demystifying-cni-control-plane chmod +x /opt/cni/bin/demystifyin
 info "Connect to the cluster control plan and verify the CNI is present"
 pe_as "ssh root@cp" "sleep 1"
 
-DEMO_PROMPT="cp# "
+DEMO_PROMPT=$PROMPT_CP
 
 info "Verify that the CNI plugin is present"
 pe_as "ls -l /opt/cni/bin/demystifying" "docker exec demystifying-cni-control-plane ls -l /opt/cni/bin/demystifying"
@@ -62,7 +58,7 @@ pe_as "cat /tmp/demystifying.log" "docker exec demystifying-cni-control-plane ca
 info "Go back to the host and check the pod"
 pe_as "exit" "sleep 1"
 
-DEMO_PROMPT="$ "
+DEMO_PROMPT=$PROMPT_NODE
 
 pe "kubectl get pod alpine"
 

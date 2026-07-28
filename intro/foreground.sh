@@ -40,4 +40,11 @@ test -f ./kubectl || curl -LO "https://dl.k8s.io/release/${KUBECTL_STABLE_VER}/b
 chmod +x ./kubectl
 sudo cp ./kubectl /usr/local/bin/kubectl
 
+echo 'Waiting for Docker to be ready...'
+until docker info >/dev/null 2>&1; do sleep 1; done
+echo 'Docker is ready.'
+
+kind delete clusters demystifying-cni || true
+docker network rm kind || true
+
 echo "=== Environment Setup Complete ==="
