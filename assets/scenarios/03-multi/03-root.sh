@@ -36,7 +36,7 @@ pei "sudo ip addr add 10.0.0.254/24 dev br0"
 pei "sudo ip link set br0 up"
 
 comment "The bridge is now created and its IP is 10.0.0.254" "Before attaching the 2 host_veth to the bridge, we need to unassign their IP" "In a real CNI plugin, the veth_host are creatred without an IP"
-pe "sudo ip addr del 10.0.0.1/24 dev veth-host"
+pe "sudo ip addr del 10.0.0.10/24 dev veth-host"
 pei "sudo ip addr del 10.0.0.20/24 dev veth-host2"
 
 comment "Now, we can attach the 2 interfaces to the bridge"
