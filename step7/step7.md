@@ -33,3 +33,7 @@ Inspect the CNI implementation
 cd /assets/scenarios/07-cni
 ./07-demo.sh
 ``` {{exec target=node hidden=true text="Run demo"}}
+
+```
+watch kubectl get pods
+``` {{exec target=ns text="Watch pod"}}

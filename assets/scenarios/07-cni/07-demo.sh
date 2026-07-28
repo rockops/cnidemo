@@ -33,10 +33,17 @@ cd ..
 comment "Try to run a pod without any CNI configured"
 pe "kubectl run alpine --image=alpine -- sleep 10000"
 
+info "Watch the pod status in another terminal"
+cont
+
 comment "Verify the status of the pod"
 pe "kubectl get pod alpine"
 
-error "It is stuck in the Pending state, We need to configure the CNI"
+error "It is stuck in the Pending state, We need to configure the CNI" "The node is not ready because there is no CNI configured"
+
+pe "kubectl describe node | grep ready"
+
+comment "Install the CNI plugin and its configuration file in the control plane"
 
 pe_as "scp 10-demystifying.conf root@cp:/etc/cni/net.d/10-demystifying.conf" "docker cp 10-demystifying.conf demystifying-cni-control-plane:/etc/cni/net.d/10-demystifying.conf"
 pe_as "scp demystifying root@cp:/opt/cni/bin/" "docker cp demystifying demystifying-cni-control-plane:/opt/cni/bin/demystifying"
@@ -53,14 +60,12 @@ pe_as "ls -l /opt/cni/bin/demystifying" "docker exec demystifying-cni-control-pl
 pe_as "ls -l /etc/cni/net.d/10-demystifying.conf" "docker exec demystifying-cni-control-plane ls -l /etc/cni/net.d/10-demystifying.conf"
 
 info "Verify that the CNI has been invoked"
-pe_as "cat /tmp/demystifying.log" "docker exec demystifying-cni-control-plane cat /tmp/demystifying.log"
+pe_as "cat /tmp/demystifying.log" "docker exec demystifying-cni-control-plane sh -c 'until [ -f /tmp/demystifying.log ]; do sleep 1; done && cat /tmp/demystifying.log'"
 
-info "Go back to the host and check the pod"
+info "Go back to the host"
 pe_as "exit" "sleep 1"
 
 DEMO_PROMPT=$PROMPT_NODE
-
-pe "kubectl get pod alpine"
 
 info "It works !" "Enter in the pod to show its IP address"
 pe "kubectl exec -it alpine -- ip a"
