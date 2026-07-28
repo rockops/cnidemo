@@ -1,6 +1,6 @@
 # Virtual Ethernet (veth) Demo
 
-This directory demonstrates how to establish network connectivity between the host (root namespace) and an isolated network namespace using a Virtual Ethernet (`veth`) pair.
+This directory demonstrates how to establish network connectivity between the host (node) and an isolated network namespace using a Virtual Ethernet (`veth`) pair.
 
 ## Target of the Demo
 
@@ -15,7 +15,7 @@ Establish bi-directional network communication between the host and network name
 
 ## How to Execute the Demo
 
-This demo requires two terminal sessions or contexts because it simulates operations in the root namespace and inside `ns1` concurrently:
+This demo requires two terminal sessions or contexts because it simulates operations in the node and inside `ns1` concurrently:
 
 1.  **Terminal 1 (Host)**: Run the host setup script:
     ```bash

@@ -14,7 +14,7 @@ clear
 
 DEMO_PROMPT=$PROMPT_NODE
 
-info "I am in the root namespace"
+info "I am in the node"
 
 redirect "Ping the Internet from the ns1 namespace"
 cont

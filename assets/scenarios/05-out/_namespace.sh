@@ -26,7 +26,7 @@ pe 'sudo ip route add default via 10.0.0.254'
 comment "Try to ping an external host"
 pe "ping -c 1 8.8.8.8"
 
-error "Still failing !" "We need to configure the NAT in the root namespace"
+error "Still failing !" "We need to configure the NAT in the node"
 cont
 
 comment "Try to ping an external host"

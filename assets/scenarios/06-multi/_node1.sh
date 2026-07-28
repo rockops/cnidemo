@@ -36,10 +36,10 @@ info "Enter in the namespace to configure it"
 
 ip netns exec pod1 bash _node1_ns.sh
 
-comment "We are back to node1 in root namespace. Check the interfaces"
+comment "We are back in node1. Check the interfaces"
 pe "ip a"
 
-comment "We can ping the pod1 namespace from the host"
+comment "We can ping the pod1 namespace from the node"
 pe "ping -c 3 10.1.1.1"
 
 redirect "Now create a namespace on node2"

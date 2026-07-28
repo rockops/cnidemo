@@ -27,7 +27,7 @@ pe "ip a"
 comment "ping from the first namespace to the second namespace"
 pe "ping -c 3 10.0.0.1"
 
-error "It fails !" "We need to create a bridge in the root namespace"
+error "It fails !" "We need to create a bridge in the node"
 cont
 
 comment "Now that we have the bridge, we can ping between the 2 namespaces"

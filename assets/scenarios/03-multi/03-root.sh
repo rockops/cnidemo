@@ -14,7 +14,7 @@ clear
 
 DEMO_PROMPT=$PROMPT_NODE
 
-info "I am in the root namespace"
+info "I am in the node"
 
 comment "Create a new network namespace"
 pe "sudo ip netns add ns2"

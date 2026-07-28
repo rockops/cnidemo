@@ -23,7 +23,7 @@ info "Enter in the namespace to configure it"
 
 ip netns exec pod2 bash _node2_ns.sh
 
-comment "We are back to node2 in root namespace." "We can ping the pod2 namespace from the host"
+comment "We are back to node2." "We can ping the pod2 namespace from the node"
 pe "ping -c 3 10.1.2.2"
 
 comment "Check the network interfaces"
