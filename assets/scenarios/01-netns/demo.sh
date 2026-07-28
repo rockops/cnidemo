@@ -18,7 +18,7 @@ clear
 comment "First, create a new network namespace"
 pe "sudo ip netns add ns1"
 
-comment "Display the network interfaces in the root namespace"
+comment "Display the network interfaces in the node"
 pe "ip a"
 
 comment "Run a shell in the new namespace"

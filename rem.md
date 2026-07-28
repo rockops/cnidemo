@@ -1,0 +1,8 @@
+- [x] mettre le teminal namespace en haut (cohérent avec le shéma)
+- [] couleur du prompt dans chaque fenêtre
+- [] brctl pour afficher les interfaces connectées au bridge
+- [x] IP cohérentes avec le namespace (1 et 10, 2 et 20)
+- [] ip r => (comm avec l'extérieur) montrer les routes par défaut
+- [] vxlan vs routage ? (démo routage ? Inconvénient/Avantages...)
+- [] démo kube: kubectl describe no | grep Ready
+- [] watch kubectl get po en haut => voir en live le passage en Running dès l'install cdu CNI

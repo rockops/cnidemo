@@ -19,5 +19,5 @@ Demonstrate the creation of a standalone, isolated network namespace (`ns1`) and
     ```
 2.  Press `Enter` to step through the command execution:
     *   Create the network namespace: `sudo ip netns add ns1`
-    *   Display root namespace interfaces: `ip a`
+    *   Display node interfaces: `ip a`
     *   Enter the namespace and run the child script `_demo.sh` to display the isolated interfaces inside `ns1`.

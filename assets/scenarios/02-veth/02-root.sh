@@ -15,19 +15,19 @@ clear
 
 DEMO_PROMPT=$PROMPT_NODE
 
-info "I am in the root namespace"
+info "I am in the node"
 
 comment "Create the veth pair"
 pe "sudo ip link add veth-host type veth peer name veth-ns"
 
-comment "We have 2 interfaces in the root namespace now"
-pe "ip a show veth-ns && ip a show veth-host"
+comment "We have 2 interfaces in the node now"
+pe "ip -br a show | grep -E 'veth-ns|veth-host'"
 
 comment "Add one end of the veth pair to the namespace"
 pe "sudo ip link set veth-ns netns ns1"
 
 comment "One end of the veth pair is now in the namespace"
-pe "ip a show veth-host"
+pe "ip -br a show | grep -E 'veth-ns|veth-host'"
 
 comment "Assign an IP to the host side of the veth pair"
 pe "sudo ip addr add 10.0.0.10/24 dev veth-host"
@@ -35,8 +35,8 @@ pe "sudo ip addr add 10.0.0.10/24 dev veth-host"
 comment "Bring the interface up"
 pe "sudo ip link set veth-host up"
 
-comment "Display the network interfaces in the root namespace"
-pe "ip a"
+comment "Display the network interfaces in the node"
+pe "ip a show veth-host"
 
 redirect "Do the same steps in the network namespace"
 
