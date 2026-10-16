@@ -19,21 +19,30 @@ pei "ip link set veth-ns netns pod2"
 pei "ip link set veth-host master br0"
 pei "ip link set veth-host up"
 
+
+DEMO_PROMPT=$PROMPT_NODE2_POD2
+
+info "I am in the pod2 namespace on node2"
+
+pei "ip netns exec pod2 ip addr add 10.1.2.2/16 dev veth-ns"
+pei "ip netns exec pod2 ip link set veth-ns up"
+pei "ip netns exec pod2 ip link set lo up"
+pei "ip netns exec pod2 ip route add default via 10.1.2.254"
+
+DEMO_PROMPT=$PROMPT_NODE2
+
+comment "We are on node2. Check the physical IP"
+pe "ip a show eth0"
+
 info "Enter in the namespace to configure it"
 
 ip netns exec pod2 bash _node2_ns.sh
-
-comment "We are back to node2." "We can ping the pod2 namespace from the node"
-pe "ping -c 3 10.1.2.2"
-
-comment "Check the network interfaces"
-pe "ip a"
 
 comment "Now, setup the VXLAN from node2 to node1"
 pe "ip link add vxlan0 type vxlan id 1 local 172.17.0.3 remote 172.17.0.2 dstport 4789"
 
 comment "Attach VXLAN to the bridge"
-pe "ip link set vxlan0 master br0"
+pei "ip link set vxlan0 master br0"
 pei "ip link set vxlan0 up"
 
 redirect "Now setup the VXLAN on node1"

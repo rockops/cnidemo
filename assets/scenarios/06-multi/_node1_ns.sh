@@ -12,11 +12,4 @@ pei "ip link set veth-ns up"
 pei "ip link set lo up"
 pei "ip route add default via 10.1.1.154"
 
-info "Check the interfaces in the pod1 namespace"
-pei "ip a"
-
-info "I can ping the bridge from the namespace"
-pe "ping -c 3 10.1.1.154"
-
 info "Go back to the main namespace of node1"
-pe_as "exit" "sleep 1"

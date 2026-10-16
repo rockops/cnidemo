@@ -16,14 +16,6 @@ clear
 
 info "I am in the network namespace: ns2"
 
-comment "Configure the second namespace interface"
-pe "ip addr add 10.0.0.2/24 dev veth-ns2"
-pei "ip link set veth-ns2 up"
-pei "ip link set lo up"
-
-comment "Display the interfaces in the second namespace"
-pe "ip a"
-
 comment "ping from the first namespace to the second namespace"
 pe "ping -c 3 10.0.0.1"
 

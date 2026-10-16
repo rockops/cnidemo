@@ -1,6 +1,6 @@
 ## Connect to node1 and setup namespace
 
-Check connectivity within node1
+Setup the first node
 
 ```
 cd /assets/scenarios/06-multi
@@ -10,9 +10,7 @@ cd /assets/scenarios/06-multi
 
 ## Connect to node2 and setup namespace
 
-Check connectivity within node2 and between nodes<br />
-Create a tunnel from node2 to node1
-
+Setup the node 2
 ```
 cd /assets/scenarios/06-multi
 ./06-node2.sh
@@ -22,13 +20,20 @@ cd /assets/scenarios/06-multi
 
 ## Setup the connection from node1 to node2
 
-Create a tunnel from node1 to node2<br />
+Connect bridges on node 1 and node 2 together
+
+![Schema](step6-2.png)
+
+## Create a tunnel between the two bridges
+
+Physically, connection is made by 2 UDP connections<br />
 Check connectivity between node2 and node1
 
 ```
 go
 ``` {{exec target=node hidden=true text="Start"}}
 
+![Schema](step6-3.png)
 
 ## Check connectivity
 
@@ -39,4 +44,3 @@ go
 ``` {{exec target=ns hidden=true text="Start"}}
 
 
-![Schema](step6-2.png)

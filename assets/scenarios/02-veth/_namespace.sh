@@ -17,18 +17,8 @@ clear
 
 info "I am in the network namespace: ns1"
 
-comment "Display the network interfaces in the current namespace"
-pe "ip a"
-
-comment "Assign an IP to the namespace side of the veth pair"
-pe "ip addr add 10.0.0.1/24 dev veth-ns"
-
-comment "Bring the interface up"
-pe "ip link set veth-ns up"
-
-sudo ip netns exec ns1 ip link set lo up
-
-comment "Display the network interfaces in the current namespace"
+comment "One end of the veth pair is now in the namespace"
+#pe "ip -br a show | grep -E 'veth-ns|veth-host'"
 pe "ip a"
 
 comment "Ping the host"
