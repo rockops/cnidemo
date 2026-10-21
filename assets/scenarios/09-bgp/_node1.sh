@@ -44,26 +44,25 @@ comment "Inspect the BIRD BGP configuration for node1"
 pe "cat bird_node1.conf"
 
 comment "Start the BIRD routing daemon on node1"
-pe "bird -c bird_node1.conf -s bird.ctl"
+pe "bird -c bird_node1.conf -s /run/bird.ctl"
 sleep 1
 
 comment "Check BGP protocol status (waiting for node2)"
-pe "birdc -s bird.ctl show protocols"
+pe "birdc -s /run/bird.ctl show protocols"
 
 redirect "Now connect to node2 and start its BGP daemon"
 cont
 
 comment "Back on node1: check if BGP session is now Established"
-pe "birdc -s bird.ctl show protocols"
+pe "birdc -s /run/bird.ctl show protocols"
 
 comment "Check the Linux kernel routing table on node1"
 comment "Notice 'proto bird': the route was injected automatically by BGP !"
 pe "ip route"
 
-redirect "Switch to node2 to test ping from pod2 to pod1"
-cont
-
+DEMO_PROMPT=$PROMPT_NODE1_POD1
 comment "Test reverse ping from pod1 to pod2 (10.1.2.2)"
 pe "ip netns exec pod1 ping -c 3 10.1.2.2"
+DEMO_PROMPT=$PROMPT_NODE1
 
 info "BGP dynamic route exchange is fully operational !"

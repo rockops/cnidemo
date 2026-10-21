@@ -13,6 +13,8 @@ Instead of encapsulating packets into UDP tunnels:
 
 ## Connect to node1 and setup namespace
 
+![Schema](step8.png)
+
 Setup the first node with pod subnet `10.1.1.0/24`:
 
 ```
@@ -48,8 +50,14 @@ go
 
 ## Check connectivity
 
-Test full two-way communication between `pod2` and `pod1`:
+Test communication between `pod2` and `pod1`:
 
 ```
 go
 ``` {{exec target=ns hidden=true text="Start"}}
+
+Test communication between `pod1` and `pod2`:
+
+```
+go
+``` {{exec target=node hidden=true text="Start"}}

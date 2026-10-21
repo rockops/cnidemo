@@ -5,7 +5,7 @@
 
 DEMO_PROMPT=$PROMPT_NODE2
 
-info "I am on node2. Create the namespace, veth and bridge with a dedicated subnet (10.1.2.0/24)"
+info "I am on node2. Create the namespace, veth" "and bridge with a dedicated subnet (10.1.2.0/24)"
 
 cd /demo/08-routing
 
@@ -46,16 +46,15 @@ comment "We are on node2. Check the physical IP"
 pe "ip a show eth0"
 
 info "Try to ping pod1 (10.1.1.1) from pod2 before configuring routing"
-pe "ip netns exec pod2 ping -c 3 10.1.1.1"
+DEMO_PROMPT=$PROMPT_NODE2_POD2
+pe "ip netns exec pod2 ping -c 1 10.1.1.1"
+DEMO_PROMPT=$PROMPT_NODE2
 
-error "It fails ! Node2 has no route to reach the 10.1.1.0/24 subnet"
+error "It fails ! Node2 has no route to reach" "the 10.1.1.0/24 subnet"
 
-comment "In a Layer 3 CNI, we route pod subnets instead of using a VXLAN overlay"
-comment "Add a route to node1's pod subnet (10.1.1.0/24) via node1's IP (172.17.0.2)"
+comment "In a Layer 3 CNI, we route pod subnets" "instead of using a VXLAN overlay"
+comment "Add a route to node1's pod subnet (10.1.1.0/24)" "via node1's IP (172.17.0.2)"
 pe "ip route add 10.1.1.0/24 via 172.17.0.2 dev eth0"
-
-comment "Ensure IP forwarding is enabled on node2"
-pei "sysctl -w net.ipv4.ip_forward=1"
 
 comment "Display the routing table on node2"
 pe "ip route"
@@ -63,7 +62,10 @@ pe "ip route"
 redirect "Now add the return route on node1"
 cont
 
-info "Routes are configured on both nodes! Test ping again from pod2 to pod1"
+DEMO_PROMPT=$PROMPT_NODE2_POD2
+info "Routes are configured on both nodes!" "Test ping again from pod2 to pod1"
 pe "ip netns exec pod2 ping -c 3 10.1.1.1"
+DEMO_PROMPT=$PROMPT_NODE2
 
-info "Success ! Packets are routed at Layer 3 without any overlay encapsulation"
+
+info "Success ! Packets are routed at Layer 3" "without any overlay encapsulation"

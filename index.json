@@ -45,7 +45,7 @@
         {
           "file": "scenarios/**",
           "target": "/assets",
-          "chmod": "+r"
+          "chmod": "+rw"
         }
       ]
     }

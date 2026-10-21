@@ -37,3 +37,9 @@ cd /assets/scenarios/07-cni
 ```
 watch kubectl get pods
 ``` {{exec target=ns text="Watch pod"}}
+
+Install the CNI and test it
+
+```
+go
+``` {{exec target=node hidden=true text="Start"}}

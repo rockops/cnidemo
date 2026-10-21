@@ -5,7 +5,7 @@
 
 DEMO_PROMPT=$PROMPT_NODE1
 
-info "I am on node1. Create the namespace, veth and bridge with a dedicated subnet (10.1.1.0/24)"
+info "I am on node1. Create the namespace, veth and" "bridge with a dedicated subnet (10.1.1.0/24)"
 
 cd /demo/08-routing
 
@@ -48,19 +48,19 @@ pe "ip a show eth0"
 redirect "Now create a namespace on node2 and try to ping node1"
 cont
 
-comment "Back on node1: add a route to node2's pod subnet (10.1.2.0/24) via node2's IP (172.17.0.3)"
+comment "Back on node1: add a route to node2's" "pod subnet (10.1.2.0/24) via node2's IP (172.17.0.3)"
 pe "ip route add 10.1.2.0/24 via 172.17.0.3 dev eth0"
-
-comment "Ensure IP forwarding is enabled on node1"
-pei "sysctl -w net.ipv4.ip_forward=1"
 
 comment "Display the routing table on node1"
 pe "ip route"
 
-redirect "Go to node2 to test ping from pod2 to pod1"
+redirect "Go to node2 to test ping " "from pod2 to pod1"
 cont
 
-comment "Test connectivity in the other direction: ping from pod1 to pod2 (10.1.2.2)"
-pe "ip netns exec pod1 ping -c 3 10.1.2.2"
+DEMO_PROMPT=$PROMPT_NODE1_POD1
 
-info "L3 routed connection between node1 and node2 is fully working !"
+comment "Test connectivity in the other direction:" "ping from pod1 to pod2 (10.1.2.2)"
+pe "ip netns exec pod1 ping -c 3 10.1.2.2"
+DEMO_PROMPT=$PROMPT_NODE1
+
+info "L3 routed connection between node1" "and node2 is fully working !"

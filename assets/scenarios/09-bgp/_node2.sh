@@ -40,32 +40,33 @@ pei "sysctl -w net.ipv4.ip_forward=1"
 comment "Check node2 physical IP"
 pe "ip a show eth0"
 
+DEMO_PROMPT=$PROMPT_NODE2_POD2
 info "Try to ping pod1 (10.1.1.1) from pod2 before starting BGP"
 pe "ip netns exec pod2 ping -c 3 10.1.1.1"
 
 error "It fails ! Node2 has no route to reach the 10.1.1.0/24 subnet"
 
+DEMO_PROMPT=$PROMPT_NODE2
 comment "Inspect the BIRD BGP configuration for node2"
 pe "cat bird_node2.conf"
 
 comment "Start the BIRD routing daemon on node2"
-pe "bird -c bird_node2.conf -s bird.ctl"
+pe "bird -c bird_node2.conf -s /run/bird.ctl"
 sleep 2
 
 comment "Check BGP protocol status"
-pe "birdc -s bird.ctl show protocols"
+pe "birdc -s /run/bird.ctl show protocols"
 
 comment "Inspect the routes known to BIRD"
-pe "birdc -s bird.ctl show route"
+pe "birdc -s /run/bird.ctl show route"
 
 comment "Check the Linux kernel routing table on node2"
 comment "Notice 'proto bird': 10.1.1.0/24 was learned dynamically via BGP !"
 pe "ip route"
 
+DEMO_PROMPT=$PROMPT_NODE2_POD2
 info "Now test ping again from pod2 to pod1 (10.1.1.1)"
 pe "ip netns exec pod2 ping -c 3 10.1.1.1"
+DEMO_PROMPT=$PROMPT_NODE2
 
 info "Success ! Route was learned and populated dynamically by BGP"
-
-redirect "Go back to node1 to verify its table and test reverse ping"
-cont

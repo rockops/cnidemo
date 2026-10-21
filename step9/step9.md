@@ -15,6 +15,8 @@ In this scenario, we use **BIRD 2** to automate the route exchange between `node
 
 ## Connect to node1 and start BGP
 
+![Schema](step9.png)
+
 Setup node1 (`10.1.1.0/24`), inspect its BIRD configuration, and start the daemon:
 
 ```
@@ -40,12 +42,3 @@ Switch back to node1 to verify that the BGP session is **Established** and that 
 ```
 go
 ``` {{exec target=node hidden=true text="Start"}}
-
-
-## Verify reverse connectivity
-
-Test ping from `pod2` to `pod1` and from `pod1` to `pod2`:
-
-```
-go
-``` {{exec target=ns hidden=true text="Start"}}
