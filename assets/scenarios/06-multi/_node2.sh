@@ -38,8 +38,8 @@ info "Enter in the namespace to configure it"
 
 ip netns exec pod2 bash _node2_ns.sh
 
-comment "Now, setup the VXLAN from node2 to node1"
-pe "ip link add vxlan0 type vxlan id 1 local 172.17.0.3 remote 172.17.0.2 dstport 4789"
+comment "Now, setup the VXLAN on node2 using multicast group 239.1.1.1"
+pe "ip link add vxlan0 type vxlan id 1 group 239.1.1.1 dev eth0 dstport 4789"
 
 comment "Attach VXLAN to the bridge"
 pei "ip link set vxlan0 master br0"

@@ -2,10 +2,12 @@ CLUSTER_NAME?=demystifying-cni
 
 .PHONY: cluster create init setup start up
 cluster create init setup start up:
+	docker image inspect alpine:latest >/dev/null 2>&1 || docker pull alpine:latest
 	kind create cluster --config kind.yaml --name ${CLUSTER_NAME}
+	ARCH=$$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/'); \
+	docker save alpine:latest | docker exec -i ${CLUSTER_NAME}-control-plane ctr --namespace=k8s.io images import --platform linux/$$ARCH -
 	kubectl delete deploy -n kube-system coredns
 	kubectl delete deploy -n local-path-storage local-path-provisioner
-	docker exec demystifying-cni-control-plane crictl pull httpd > /dev/null
 
 .PHONY: cni cp copy
 cni cp copy:

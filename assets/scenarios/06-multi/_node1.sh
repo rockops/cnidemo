@@ -42,8 +42,8 @@ pe "ip a show eth0"
 redirect "Now create a namespace on node2"
 cont
 
-comment "Back on node 1" "Setup the VXLAN on node 1"
-pe "ip link add vxlan0 type vxlan id 1 local 172.17.0.2 remote 172.17.0.3 dstport 4789"
+comment "Back on node 1" "Setup the VXLAN on node 1 using multicast group 239.1.1.1"
+pe "ip link add vxlan0 type vxlan id 1 group 239.1.1.1 dev eth0 dstport 4789"
 
 comment "Attach VXLAN to the bridge"
 pei "ip link set vxlan0 master br0"

@@ -35,8 +35,10 @@ chmod +x ./kind
 sudo cp ./kind /usr/local/bin/kind
 
 echo "=== Installing kubectl ==="
-KUBECTL_STABLE_VER=$(curl -L -s https://dl.k8s.io/release/stable.txt)
-test -f ./kubectl || curl -LO "https://dl.k8s.io/release/${KUBECTL_STABLE_VER}/bin/linux/amd64/kubectl"
+test -f ./kubectl || {
+    KUBECTL_STABLE_VER=$(curl -L -s https://dl.k8s.io/release/stable.txt)
+    curl -LO "https://dl.k8s.io/release/${KUBECTL_STABLE_VER}/bin/linux/amd64/kubectl"
+}
 chmod +x ./kubectl
 sudo cp ./kubectl /usr/local/bin/kubectl
 
@@ -46,5 +48,6 @@ echo 'Docker is ready.'
 
 kind delete clusters demystifying-cni || true
 docker network rm kind || true
+docker image inspect alpine:latest >/dev/null 2>&1 || docker pull alpine:latest
 
 echo "=== Environment Setup Complete ==="

@@ -61,7 +61,7 @@ comment "Inspect the routes known to BIRD"
 pe "birdc -s /run/bird.ctl show route"
 
 comment "Check the Linux kernel routing table on node2"
-comment "Notice 'proto bird': 10.1.1.0/24 was learned dynamically via BGP !"
+comment "Notice 'proto bird': 10.1.1.0/24 was learned" "dynamically via BGP !"
 pe "ip route"
 
 DEMO_PROMPT=$PROMPT_NODE2_POD2
@@ -69,4 +69,4 @@ info "Now test ping again from pod2 to pod1 (10.1.1.1)"
 pe "ip netns exec pod2 ping -c 3 10.1.1.1"
 DEMO_PROMPT=$PROMPT_NODE2
 
-info "Success ! Route was learned and populated dynamically by BGP"
+info "Success ! Route was learned and populated" "dynamically by BGP"

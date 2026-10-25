@@ -57,7 +57,7 @@ comment "Back on node1: check if BGP session is now Established"
 pe "birdc -s /run/bird.ctl show protocols"
 
 comment "Check the Linux kernel routing table on node1"
-comment "Notice 'proto bird': the route was injected automatically by BGP !"
+comment "Notice 'proto bird': the route was injected" "automatically by BGP !"
 pe "ip route"
 
 DEMO_PROMPT=$PROMPT_NODE1_POD1

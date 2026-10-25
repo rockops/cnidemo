@@ -9,7 +9,7 @@ In production Kubernetes environments, CNIs like **Project Calico** and **Cilium
 - When a pod subnet is assigned to a node, BGP advertises it to all peer nodes.
 - Peer nodes receive the advertisement and automatically program the route (`proto bird`) into their Linux kernel routing table.
 
-In this scenario, we use **BIRD 2** to automate the route exchange between `node1` and `node2`.
+In this scenario, we use **BIRD 2** to automate the route exchange between `node1`, `node2`, and `node3`.
 
 ---
 
@@ -42,3 +42,14 @@ Switch back to node1 to verify that the BGP session is **Established** and that 
 ```
 go
 ``` {{exec target=node hidden=true text="Start"}}
+
+
+## Connect to node3 and verify mesh convergence
+
+To demonstrate how BGP scales automatically when adding new nodes, connect to `node3`:
+
+```
+cd /assets/scenarios/09-bgp
+./09-node3.sh
+``` {{exec target=ns hidden=true text="Create node3"}}
+

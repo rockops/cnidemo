@@ -31,7 +31,7 @@ echo " Ready!"
 cd ..
 
 comment "Try to run a pod without any CNI configured"
-pe "kubectl run alpine --image=alpine -- sleep 10000"
+pe "kubectl run alpine --image=alpine --image-pull-policy=IfNotPresent -- sleep 10000"
 
 info "Watch the pod status in another terminal"
 cont
@@ -45,8 +45,8 @@ pe "kubectl describe node | grep ready"
 
 comment "Install the CNI plugin and its configuration file in the control plane"
 
-pe_as "scp 10-demystifying.conf root@cp:/etc/cni/net.d/10-demystifying.conf" "docker cp 10-demystifying.conf demystifying-cni-control-plane:/etc/cni/net.d/10-demystifying.conf"
 pe_as "scp demystifying root@cp:/opt/cni/bin/" "docker cp demystifying demystifying-cni-control-plane:/opt/cni/bin/demystifying"
+pe_as "scp 10-demystifying.conf root@cp:/etc/cni/net.d/10-demystifying.conf" "docker cp 10-demystifying.conf demystifying-cni-control-plane:/etc/cni/net.d/10-demystifying.conf"
 
 docker exec -it demystifying-cni-control-plane chmod +x /opt/cni/bin/demystifying
 

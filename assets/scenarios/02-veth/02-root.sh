@@ -49,3 +49,9 @@ cont
 redirect "Ping the namespace from the host"
 pe "ping -c 3 10.0.0.1"
 
+comment "Server running in the namespace is now reachable"
+
+pe "curl -m 2 http://10.0.0.1:8080/Hello-from-host || true"
+
+sudo pkill -f echo_server.py 2>/dev/null || true
+

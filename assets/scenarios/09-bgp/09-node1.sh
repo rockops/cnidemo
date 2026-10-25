@@ -18,6 +18,7 @@ docker rm -f $(docker ps -aq --filter "label=cni-demo-cleanup=true") 2>/dev/null
 
 docker run -dit --name node1 --hostname node1 --privileged -v $TOP:/demo --label "cni-demo-cleanup=true" demo-bgp
 docker run -dit --name node2 --hostname node2 --privileged -v $TOP:/demo --label "cni-demo-cleanup=true" demo-bgp
+docker run -dit --name node3 --hostname node3 --privileged -v $TOP:/demo --label "cni-demo-cleanup=true" demo-bgp
 
 # hide the evidence
 clear

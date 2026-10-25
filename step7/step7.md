@@ -43,3 +43,7 @@ Install the CNI and test it
 ```
 go
 ``` {{exec target=node hidden=true text="Start"}}
+
+```
+echo Finished
+``` {{exec interrupt target=ns hidden=true text="Stop"}}
