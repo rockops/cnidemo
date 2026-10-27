@@ -50,4 +50,6 @@ kind delete clusters demystifying-cni || true
 docker network rm kind || true
 docker image inspect alpine:latest >/dev/null 2>&1 || docker pull alpine:latest
 
+echo "34.160.111.145 ifconfig.me" >> /etc/hosts
+
 echo "=== Environment Setup Complete ==="
